@@ -29,7 +29,6 @@ class FileWriter {
     }
 
     writeToFile(answer) {
-        console.log(answer);
         if (answer === 'exit') {
             this.readLines.close();
             process.exit(0);

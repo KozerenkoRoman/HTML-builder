@@ -18,8 +18,7 @@ class CopyDirectory {
 
     rmDir() {
         fs.rm(this.dest, {recursive: true}, (err) => {
-            if (err) console.log(chalk.red(err));
-            console.log(chalk.blue(`Directory ${this.dest} deleted`));
+            if (!err) console.log(chalk.blue(`Directory ${this.dest} deleted`));
             this.mkDir();
         });
     }
