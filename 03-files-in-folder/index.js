@@ -7,7 +7,7 @@ class FolderInfo {
     stat = fs.stat;
 
     constructor(folderName) {
-        this.path = path.join(__dirname, folderName)
+        this.path = path.join(__dirname, folderName);
         process.on('exit', () => this.sayGoodBye());
     }
 
