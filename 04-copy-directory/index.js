@@ -19,11 +19,11 @@ class CopyDirectory {
     rmDir() {
         fs.rm(this.dest, {recursive: true}, (err) => {
             if (!err) console.log(chalk.blue(`Directory ${this.dest} deleted`));
-            this.mkDir();
+            this.makeDir();
         });
     }
 
-    mkDir() {
+    makeDir() {
         fs.mkdir(this.dest, {recursive: true}, (err) => {
             if (err) console.log(chalk.red(err));
             console.log(chalk.green(`Directory ${this.dest} created`));
