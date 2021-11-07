@@ -81,13 +81,18 @@ class PageBuilder {
     }
 
     async createHtmlFile() {
-        const template = await this.readFile(path.join(__dirname, 'template.html'));
-        const header = await this.readFile(path.join(__dirname, '/components/header.html'));
-        const articles = await this.readFile(path.join(__dirname, '/components/articles.html'));
-        const footer = await this.readFile(path.join(__dirname, '/components/footer.html'));
-        const result = template.replace('{{header}}', `${header}`).replace('{{articles}}', `${articles}`).replace('{{footer}}', `${footer}`);
-
-        await fsp.writeFile(path.join(this.projectDir, '/index.html'), `${result}`, {flag: 'w'}, error => {
+        let template = await this.readFile(path.join(__dirname, 'template.html'));
+        const componentsPath = path.join(__dirname, '/components');
+        const files = await fsp.readdir(componentsPath, {withFileTypes: true});
+        for (let file of files) {
+            console.log(file.name)
+            if (file.isFile() && path.extname(file.name) === '.html') {
+                const content = await this.readFile(path.join(componentsPath, `/${file.name}`));
+                const fileName = path.basename(file.name, path.extname(file.name));
+                template = template.replace(`{{${fileName}}}`, `${content}`);
+            }
+        }
+        await fsp.writeFile(path.join(this.projectDir, '/index.html'), `${template}`, {flag: 'w'}, error => {
             if (error) throw error;
         });
     }
