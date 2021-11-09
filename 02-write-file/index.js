@@ -1,4 +1,3 @@
-const chalk = require('chalk'); //https://www.npmjs.com/package/chalk
 const fs = require('fs');
 const path = require('path');
 const process = require('process');
@@ -19,13 +18,13 @@ class FileWriter {
     }
 
     sayGoodBye() {
-        this.stdout.write(chalk.blueBright('Good luck!\n'));
+        this.stdout.write('Good luck!\n');
         this.readLines.close();
         process.exit(0);
     }
 
     sayHello() {
-        this.stdout.write(chalk.bold('Please enter any text\n'));
+        this.stdout.write('Please enter any text\n');
     }
 
     writeToFile(answer) {

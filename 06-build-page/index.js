@@ -1,4 +1,3 @@
-const chalk = require('chalk'); //https://www.npmjs.com/package/chalk
 const fs = require('fs');
 const fsp = require('fs').promises;
 const path = require('path');
@@ -39,17 +38,17 @@ class PageBuilder {
     async makeDir(dir) {
         try {
             await fsp.rm(dir, {recursive: true}, (err) => {
-                console.log(chalk.blue(`Directory ${dir} deleted`));
+                console.log(`Directory ${dir} deleted`);
             })
         } catch (err) {
-            console.log(chalk.blue(`No such directory ${dir} for delete`));
+            console.log(`No such directory ${dir} for delete`);
         }
         try {
             await fsp.mkdir(dir, {recursive: true}, (err) => {
-                console.log(chalk.green(`Directory ${dir} created`));
+                console.log(`Directory ${dir} created`);
             })
         } catch (err) {
-            console.log(chalk.red(`Unable to create directory ${dir}`));
+            console.log(`Unable to create directory ${dir}`);
         }
     }
 
@@ -112,7 +111,7 @@ class PageBuilder {
     }
 
     sayGoodBye() {
-        console.log(chalk.blueBright('Good luck!'));
+        console.log('Good luck!');
     }
 }
 

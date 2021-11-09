@@ -1,4 +1,3 @@
-const chalk = require('chalk'); //https://www.npmjs.com/package/chalk
 const fs = require('fs');
 const path = require('path');
 const process = require('process');
@@ -14,15 +13,15 @@ class MergeCSS {
 
     merge() {
         fs.writeFile(this.dest, '', function (err) { //Clear destination file
-            if (err) console.log(chalk.red(err));
+            if (err) console.log(err);
         });
         fs.readdir(this.source, {withFileTypes: true}, (err, files) => {
-            if (err) console.log(chalk.red(err));
+            if (err) console.log(err);
             files.forEach((file) => {
                 if (file.isFile() && path.extname(file.name) === '.css') {
                     this.readFile(file.name).then(result => {
                         fs.appendFile(this.dest, result, function (err) {
-                            if (err) console.log(chalk.red(err));
+                            if (err) console.log(err);
                         });
                     });
                 }
@@ -41,7 +40,7 @@ class MergeCSS {
     }
 
     sayGoodBye() {
-        console.log(chalk.blueBright('Good luck!'));
+        console.log('Good luck!');
     }
 }
 

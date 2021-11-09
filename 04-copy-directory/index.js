@@ -1,4 +1,3 @@
-const chalk = require('chalk'); //https://www.npmjs.com/package/chalk
 const fs = require('fs');
 const path = require('path');
 const process = require('process');
@@ -18,22 +17,22 @@ class CopyDirectory {
 
     rmDir() {
         fs.rm(this.dest, {recursive: true}, (err) => {
-            if (!err) console.log(chalk.blue(`Directory ${this.dest} deleted`));
+            if (!err) console.log(`Directory ${this.dest} deleted`);
             this.makeDir();
         });
     }
 
     makeDir() {
         fs.mkdir(this.dest, {recursive: true}, (err) => {
-            if (err) console.log(chalk.red(err));
-            console.log(chalk.green(`Directory ${this.dest} created`));
+            if (err) console.log(err);
+            console.log(`Directory ${this.dest} created`);
             this.copyDir()
         });
     }
 
     copyDir() {
         fs.readdir(this.source, {withFileTypes: true}, (err, files) => {
-            if (err) console.log(chalk.red(err));
+            if (err) console.log(err);
             files.forEach((file) => {
                 if (file.isFile()) {
                     this.copyFile(file);
@@ -52,7 +51,7 @@ class CopyDirectory {
     }
 
     sayGoodBye() {
-        console.log(chalk.blueBright('Good luck!'));
+        console.log('Good luck!');
     }
 }
 

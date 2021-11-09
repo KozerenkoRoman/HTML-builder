@@ -1,4 +1,3 @@
-const chalk = require('chalk'); //https://www.npmjs.com/package/chalk
 const fs = require('fs');
 const path = require('path');
 const process = require('process');
@@ -13,12 +12,12 @@ class FileReader {
     readFile() {
         const readableStream = fs.createReadStream(this.file, 'utf-8');
         readableStream.on('data', (chunk) => {
-            this.stdout.write(chalk.bold(chunk))
+            this.stdout.write(chunk)
         });
     }
 
     sayGoodBye() {
-        process.on('exit', () => this.stdout.write(chalk.blueBright('Good luck!\n')));
+        process.on('exit', () => this.stdout.write('Good luck!\n'));
     }
 }
 
